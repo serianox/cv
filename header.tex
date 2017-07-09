@@ -1,0 +1,110 @@
+\documentclass[margin,11pt,a4paper]{res}
+
+\usepackage[T1]{fontenc}
+\usepackage{libertine} %newcent, libertine
+%\renewcommand*\oldstylenums[1]{{\fontfamily{fxlj}\selectfont #1}} %fxlj
+
+\usepackage{fullpage}
+%\usepackage[cyr]{aeguill}
+\usepackage{multicol}
+\usepackage{anysize}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[svgnames]{xcolor}
+\usepackage[pdftex,colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+\usepackage{marvosym} %eurosym, textcomp, pifont, marvosym
+\usepackage{amssymb} %triangleright
+\usepackage{ifthen}
+\usepackage{suffix}
+\usepackage{nopageno}
+
+%\marginsize{16mm}{52mm}{14mm}{14mm}
+\marginsize{16mm}{52mm}{14mm}{14mm}
+\linethickness{1pt}
+\frenchspacing
+
+\newcommand{\supdash}{\ensuremath{-}}
+
+\newcommand{\supbold}[1]{\textbf{#1}}
+
+\newcommand{\supemph}[1]{\emph{#1}}
+
+\newcommand{\supdate}[2]
+{
+	\ifthenelse{\equal{#1}{*}}
+	{
+		\oldstylenums{#2}
+	}
+	{
+		\oldstylenums{#1 \supdash \hspace{1pt} #2}
+	}
+}
+
+\newcommand{\suptitle}[1]
+{
+	\begin{ncolumn}{1}
+		\centering
+		\Large{#1}
+	\end{ncolumn}%
+	\vspace{8pt}
+}
+
+\newcommand{\supspacer}{\color{Gray} \vspace{-98pt} \hspace{256pt}  {\linethickness{1pt} \line(0,1){82}} \normalcolor \vspace{16pt}}
+
+\newcommand{\supaddress}[1]{\hspace{-20pt} {\color{darkgray} \Writinghand} \hspace{3pt} #1}
+
+\newcommand{\supmobile}[1]{\hspace{-20pt} {\color{darkgray} \Mobilefone} \hspace{3pt} \textbf{#1}}
+
+\newcommand{\supphone}[1]{\hspace{-20pt} {\color{darkgray} \Telefon} \hspace{3pt} #1}
+
+\newcommand{\supmail}[1]{\hspace{-20pt} {\color{darkgray} \Letter} \hspace{2pt} \href{mailto:#1}{\textbf{#1}}}
+
+\newcommand{\supweb}[2]{\hspace{4pt} \vspace{4pt} \href{#2}{\textbf{#1}}}
+
+% \bullet
+% \triangleright
+% \succ
+% \odot
+% \rightharpoonup
+% \checkmark
+%\newcommand{\itemshop}{{\color{Gray} \hspace{-2pt} \triangleright}}
+%\newcommand{\itemshop}{{\color{Gray} \hspace{-8pt} \rightharpoonup}}
+%\newcommand{\itemshop}{{\color{Gray} \hspace{-8pt} \checkmark}}
+\newcommand{\itemshop}{{\color{Gray} \hspace{-8pt} \--}}
+
+\newenvironment{supitemize}[1]
+{
+%	\def \lhs{} \def \rhs{#1}
+%	\ifx \lhs \rhs
+%		\section{}
+%	\else
+%		\section{#1}
+%	\fi
+%	\color{lightgrey} \vspace{-16pt} \hspace{-100pt} \line(1,0){90} \hspace{16pt} \line(1,0){240} \normalcolor
+	\vspace{-18pt} \section{\hfill #1\ \ \ \ \ } \color{Gray} \vspace{-3pt} \hspace{6pt} \line(1,0){390} \normalcolor
+	\vspace{2pt}
+	\renewcommand{\labelitemi}{{\color{Gray}\--}}
+	\renewcommand{\labelitemii}{\labelitemi}
+	\begin{itemize}
+}
+{
+%	\item[] \vspace{-16pt}
+	\end{itemize}
+}
+
+\newcommand{\supitem}[4][nostar]
+{
+	\ifthenelse{\equal{#1}{*}}
+	{
+		\item[\ensuremath{\itemshop}] \normalsize{#3} \hfill #2 \\
+	}%
+	{
+		\item[\ensuremath{\itemshop}] \textbf{\normalsize{#2}} : #3 \\
+	}%
+	\def \lhs{} \def \rhs{#4}
+	\ifx \lhs \rhs
+		\vspace{-12pt}
+	\else
+		\small{#4}
+	\fi
+}
