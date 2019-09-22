@@ -1,20 +1,23 @@
+LATEX := pdflatex -halt-on-error
 
-LATEX = pdflatex
+LANGS := fr en
 
-LANGS = fr en
+TARGETS := $(addprefix resume_, $(addsuffix .pdf, $(LANGS)))
 
-TARGETS = $(addprefix resume_, $(addsuffix .pdf, $(LANGS)))
-
-default : all
-	$(LATEX) merge.tex
+.DEFAULT_GOAL := all
 
 all : $(TARGETS)
 
-.PHONY : clean
+.PHONY : clean watch all
 
 clean :
-	yes | bzr clean-tree
-	@echo
+	git clean -fdX
 
 resume_%.pdf : resume_%.tex body_%.tex header.tex
 	$(LATEX) $<
+
+SHELL := bash
+WATCH ?= $(.DEFAULT_GOAL)
+
+watch :
+	inotifywait --monitor --event modify `LANG=en_EN make $(WATCH) --always-make --dry-run --silent --debug=v | grep --perl-regexp "Considering target file '\K[^']+" --only-matching | xargs ls` | while read; do make $(WATCH); done
