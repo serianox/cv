@@ -1,19 +1,15 @@
 LATEX := pdflatex -halt-on-error -recorder
 
-LANGS := fr en
-
-TARGETS := $(addprefix resume_, $(addsuffix .pdf, $(LANGS)))
-
 .DEFAULT_GOAL := all
 
-all : $(TARGETS)
+all : resume_fr.pdf resume_en.pdf
 
 .PHONY : clean watch all
 
 clean :
 	git clean -fdX
 
-resume_%.pdf : resume_%.tex
+%.pdf : %.tex
 	$(LATEX) $<
 	< $(basename $@).fls grep --perl-regexp "INPUT \K[^/].*tex" --only-matching | sort | uniq | xargs echo $@: >$(basename $@).d
 
