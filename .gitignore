@@ -1,3 +1,5 @@
 *.aux
+*.d
+*.fls
 *.log
 *.out
