@@ -1,5 +1,3 @@
-LATEX := pdflatex -halt-on-error -recorder
-
 .DEFAULT_GOAL := all
 
 all : resume_fr.pdf resume_en.pdf
@@ -10,8 +8,11 @@ clean :
 	git clean -fdX
 
 %.pdf : %.tex
-	$(LATEX) $<
+	pdflatex -halt-on-error -recorder $<
 	< $(basename $@).fls grep --perl-regexp "INPUT \K[^/].*tex" --only-matching | sort | uniq | xargs echo $@: >$(basename $@).d
+
+%.tex : %.md
+	pandoc --from markdown $< --to latex --output $@
 
 SHELL := bash
 WATCH ?= $(.DEFAULT_GOAL)
