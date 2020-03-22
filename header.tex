@@ -1,7 +1,7 @@
-\documentclass[margin,11pt,a4paper]{res}
+\documentclass[11pt,a4paper]{article}
 
 \usepackage[T1]{fontenc}
-\usepackage{libertine} %newcent, libertine
+\usepackage{newcent} %newcent, libertine
 %\renewcommand*\oldstylenums[1]{{\fontfamily{fxlj}\selectfont #1}} %fxlj
 
 \usepackage{fullpage}
@@ -9,7 +9,7 @@
 \usepackage{multicol}
 \usepackage{anysize}
 \usepackage[utf8]{inputenc}
-\usepackage[francais]{babel}
+\usepackage[french]{babel}
 \usepackage[svgnames]{xcolor}
 \usepackage[pdftex,colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
 \usepackage{marvosym} %eurosym, textcomp, pifont, marvosym
@@ -18,8 +18,20 @@
 \usepackage{suffix}
 \usepackage{nopageno}
 
-%\marginsize{16mm}{52mm}{14mm}{14mm}
-\marginsize{16mm}{52mm}{14mm}{14mm}
+\pagestyle{empty}
+\topmargin 0pt
+\headheight 0pt
+\headsep 0pt
+\textheight 9in
+\parindent 0pt
+\topmargin 0in
+\oddsidemargin 0pt
+\evensidemargin 0pt
+\marginparwidth 0pt
+\parindent 0pt
+\parskip \baselineskip
+\setcounter{secnumdepth}{0}
+\marginsize{16mm}{16mm}{14mm}{14mm}
 \linethickness{1pt}
 \frenchspacing
 
@@ -53,13 +65,13 @@
 
 \newcommand{\supaddress}[1]{\hspace{-20pt} {\color{darkgray} \Writinghand} \hspace{3pt} #1}
 
-\newcommand{\supmobile}[1]{\hspace{-20pt} {\color{darkgray} \Mobilefone} \hspace{3pt} \textbf{#1}}
+\newcommand{\supmobile}[1]{\hspace{-20pt} {\color{darkgray} \Mobilefone} \hspace{3pt} #1}
 
 \newcommand{\supphone}[1]{\hspace{-20pt} {\color{darkgray} \Telefon} \hspace{3pt} #1}
 
-\newcommand{\supmail}[1]{\hspace{-20pt} {\color{darkgray} \Letter} \hspace{2pt} \href{mailto:#1}{\textbf{#1}}}
+\newcommand{\supmail}[1]{\hspace{-20pt} {\color{darkgray} \Letter} \hspace{2pt} \href{mailto:#1}{#1}}
 
-\newcommand{\supweb}[2]{\hspace{4pt} \vspace{4pt} \href{#2}{\textbf{#1}}}
+\newcommand{\supweb}[2]{\hspace{4pt} \vspace{4pt} \href{#2}{#1}}
 
 % \bullet
 % \triangleright
@@ -80,17 +92,17 @@
 %	\else
 %		\section{#1}
 %	\fi
-%	\color{lightgrey} \vspace{-16pt} \hspace{-100pt} \line(1,0){90} \hspace{16pt} \line(1,0){240} \normalcolor
-	\vspace{-18pt} \section{\hfill #1\ \ \ \ \ } \color{Gray} \vspace{-3pt} \hspace{6pt} \line(1,0){390} \normalcolor
-	\vspace{2pt}
-	\renewcommand{\labelitemi}{{\color{Gray}\--}}
-	\renewcommand{\labelitemii}{\labelitemi}
+	%{\hfill #1\ \ \ \ \ } \color{Gray} \vspace{-3pt} \hspace{6pt} \line(1,0){390} \normalcolor
+	{\hfill \textbf{#1}\ } \color{Gray} \vspace{-6pt} \hspace{3pt} \line(1,0){390} \vspace{6pt} \normalcolor
 	\begin{itemize}
 }
 {
 %	\item[] \vspace{-16pt}
 	\end{itemize}
 }
+
+\renewcommand{\labelitemi}{{\color{Gray}\--}}
+\renewcommand{\labelitemii}{\labelitemi}
 
 \newcommand{\supitem}[4][nostar]
 {
