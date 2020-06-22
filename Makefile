@@ -10,6 +10,7 @@ clean : ## Clean the folder
 %.pdf : %.tex
 	pdflatex -halt-on-error -recorder $<
 	< $(basename $@).fls grep --perl-regexp "INPUT \K[^/].*tex" --only-matching | sort | uniq | xargs echo $@: >$(basename $@).d
+	xdg-open $@
 
 %.tex : %.md
 	pandoc --from markdown $< --to latex --output $@
